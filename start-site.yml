@@ -6,4 +6,12 @@ services:
       - .:/sln
     working_dir: /sln
     entrypoint: ["sh", "./build.sh"] 
-  
+  app-web: 
+    image: siteloader-web
+    depends_on:
+      - "tradapp-build"
+    ports:
+      - 8080:80
+    volumes:
+      - ./publish/web:/app
+    working_dir: /app
